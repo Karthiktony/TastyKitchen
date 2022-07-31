@@ -1,0 +1,39 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  height: 70vh;
+}
+
+.pageNotFound {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  text-align: center;
+  color: #1e293b;
+}
+
+.desc {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+  color: #475569;
+}
+
+.home-btn {
+  padding: 12px 24px;
+  gap: 8px;
+  width: 123px;
+  height: 48px;
+  background: #f7931e;
+  border-radius: 12px;
+  border: none;
+  color: #ffffff;
+}

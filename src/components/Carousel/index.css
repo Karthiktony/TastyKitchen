@@ -1,0 +1,17 @@
+.bg-container {
+  padding-bottom: 50px;
+}
+
+.image {
+  margin-top: 3%;
+  height: 25%;
+  width: 82%;
+  margin-left: 9%;
+}
+
+.carousel-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}

@@ -1,0 +1,47 @@
+.footer-container {
+  background-color: #0f172a;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.main-logo-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-image {
+  margin-top: 25px;
+  margin-right: 10px;
+  width: 49px;
+  height: 39px;
+}
+
+.tastyKitchen-footer {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  color: #ffffff;
+}
+
+.footer-desc {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.footer-icon {
+  color: #ffffff;
+  margin: 20px;
+  height: 40px;
+  width: 40px;
+}
