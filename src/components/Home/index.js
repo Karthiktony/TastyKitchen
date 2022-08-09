@@ -1,9 +1,12 @@
-import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import Header from '../Header'
+import {Redirect} from 'react-router-dom'
 
+import Header from '../Header'
+import CarouselOffer from '../CarouselOffer'
 import PopularRestaurants from '../PopularRestaurants'
 import Footer from '../Footer'
+
+import './index.css'
 
 const Home = () => {
   const jwtToken = Cookies.get('jwt_token')
@@ -14,7 +17,10 @@ const Home = () => {
   return (
     <>
       <Header />
-      <PopularRestaurants />
+      <div className="home-container">
+        <CarouselOffer />
+        <PopularRestaurants />
+      </div>
       <Footer />
     </>
   )

@@ -4,9 +4,9 @@ import Slider from 'react-slick'
 import Loader from 'react-loader-spinner'
 import './index.css'
 
-class Carousel extends Component {
+class CarouselOffer extends Component {
   state = {
-    carouselList: [],
+    offersList: [],
     isLoading: false,
   }
 
@@ -15,9 +15,7 @@ class Carousel extends Component {
   }
 
   getCarousel = async () => {
-    this.setState({
-      isLoading: true,
-    })
+    this.setState({isLoading: true})
     const jwtToken = Cookies.get('jwt_token')
     const url = 'https://apis.ccbp.in/restaurants-list/offers'
     const options = {
@@ -32,32 +30,30 @@ class Carousel extends Component {
       id: eachItem.id,
       imageUrl: eachItem.image_url,
     }))
-    this.setState({
-      carouselList: updatedData,
-      isLoading: false,
-    })
+    this.setState({offersList: updatedData, isLoading: false})
   }
 
-  renderCarouselList = () => {
+  renderCarousel = () => {
     const settings = {
       dots: true,
       infinite: true,
-      speed: 1000,
+      speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
-      pauseOnHover: true,
-      cssEase: 'linear',
     }
-    const {carouselList} = this.state
-
+    const {offersList} = this.state
     return (
-      <ul className="bg-container" testid="restaurants-list-loader">
-        <Slider {...settings}>
-          {carouselList.map(eachImage => (
+      <ul className="carousel-container">
+        <Slider {...settings} className="carousal">
+          {offersList.map(eachImage => (
             <li key={eachImage.id}>
-              <img src={eachImage.imageUrl} alt="offer" className="image" />
+              <img
+                src={eachImage.imageUrl}
+                alt="offer"
+                className="carousal-item-image"
+              />
             </li>
           ))}
         </Slider>
@@ -66,15 +62,18 @@ class Carousel extends Component {
   }
 
   renderLoader = () => (
-    <div testid="restaurants-offers-loader" className="carousel-loader">
-      <Loader type="TailSpin" color="#F7931E" height={50} width={50} />
+    <div
+      testid="restaurants-offers-loader"
+      className="restaurants-offers-loader"
+    >
+      <Loader type="ThreeDots" color="#F7931E" height={50} width={50} />
     </div>
   )
 
   render() {
     const {isLoading} = this.state
-    return isLoading ? this.renderLoader() : this.renderCarouselList()
+    return isLoading ? this.renderLoader() : this.renderCarousel()
   }
 }
 
-export default Carousel
+export default CarouselOffer

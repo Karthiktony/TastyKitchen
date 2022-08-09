@@ -1,63 +1,114 @@
+import {Component} from 'react'
+import {withRouter, Link} from 'react-router-dom'
+
+import {GiHamburgerMenu} from 'react-icons/gi'
+import {AiFillCloseCircle} from 'react-icons/ai'
 import Cookies from 'js-cookie'
-import {Link, withRouter} from 'react-router-dom'
-// import {GiHamburgerMenu} from 'react-icons/gi'
+import CartContext from '../../context/CartContext'
+
 import './index.css'
 
-const Header = props => {
-  const {history} = props
-  const onClickLogout = () => {
+const tastyKitchensLogo =
+  'https://res.cloudinary.com/dpm4p4bpe/image/upload/v1658937817/Frame_274formimg_qvvp69.png'
+
+class Header extends Component {
+  state = {
+    showNavItems: false,
+  }
+
+  toggleNavItemsView = () => {
+    this.setState(preState => ({
+      showNavItems: !preState.showNavItems,
+    }))
+  }
+
+  onClickLogout = () => {
     Cookies.remove('jwt_token')
+    const {history} = this.props
     history.replace('/login')
   }
 
-  const {activeTab} = props
-  const activeHome = activeTab !== 'CART' ? 'active' : ''
-  const activeCart = activeTab !== 'HOME' ? 'active' : ''
+  getClassNameFor = path => {
+    const {match} = this.props
+    const currentPath = match.path
+    if (currentPath === path) {
+      return 'nav-item-selected-link'
+    }
+    return 'nav-item-link'
+  }
 
-  return (
-    <nav className="nav-header">
-      <div className="nav-content">
-        <Link to="/">
-          <img
-            src="https://res.cloudinary.com/dpm4p4bpe/image/upload/v1658937817/Frame_274formimg_qvvp69.png"
-            alt="website logo"
-          />
-        </Link>
-        <Link to="/" className="heading-link">
-          <p className="heading">Tasty Kitchens</p>
-        </Link>
+  renderNavItemsContainer = mobile => (
+    <CartContext.Consumer>
+      {value => {
+        const {cartList} = value
+        const cartItemsCount = cartList.length
+        return (
+          <ul className={`nav-items-container${mobile}`}>
+            <li className="nav-item">
+              <Link className={this.getClassNameFor('/')} to="/">
+                Home
+              </Link>
+            </li>
 
-        <ul className="nav-menu">
-          <li className="nav-menu-item">
-            <Link to="/" className={`nav-link ${activeHome}`}>
-              Home
-            </Link>
-          </li>
-          <li className="nav-menu-item">
-            <Link to="/cart" className={`nav-link ${activeCart}`}>
-              Cart
-            </Link>
-          </li>
+            <li className="nav-item">
+              <Link className={this.getClassNameFor('/cart')} to="/cart">
+                Cart
+                {cartItemsCount > 0 && (
+                  <span className="cart-count-badge">{cartList.length}</span>
+                )}
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <button
+                className="logout-button"
+                type="button"
+                onClick={this.onClickLogout}
+              >
+                Logout
+              </button>
+            </li>
+
+            <button
+              className="nav-button"
+              type="button"
+              onClick={this.toggleNavItemsView}
+            >
+              <AiFillCloseCircle className="close-icon" />
+            </button>
+          </ul>
+        )
+      }}
+    </CartContext.Consumer>
+  )
+
+  render() {
+    const {showNavItems} = this.state
+    return (
+      <nav className="navbar">
+        <div className="logo-hamburger-container">
+          <Link className="website-logo-container" to="/">
+            <img
+              className="website-logo"
+              src={tastyKitchensLogo}
+              alt="website logo"
+            />
+            <h1 className="website-title">Tasty Kitchens</h1>
+          </Link>
+
           <button
             type="button"
-            onClick={onClickLogout}
-            className="logout-desktop-btn"
+            className="nav-button"
+            onClick={this.toggleNavItemsView}
           >
-            Logout
+            <GiHamburgerMenu className="hamburger-icon" />
           </button>
-        </ul>
-        {/* <div>
-          <button type="button" className="hamburger-btn">
-            <GiHamburgerMenu
-              size={25}
-              className="hamburger"
-              //   onClick={onClickMobileNavMenu}
-            />
-          </button>
-        </div> */}
-      </div>
-    </nav>
-  )
+        </div>
+        {this.renderNavItemsContainer('')}
+        {showNavItems && this.renderNavItemsContainer('-mobile')}
+      </nav>
+    )
+  }
 }
 
 export default withRouter(Header)

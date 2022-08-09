@@ -8,26 +8,27 @@ import {
 import './index.css'
 
 const Footer = () => (
-  <div className="footer-container ">
-    <div className="main-logo-container ">
+  <div className="footer-container">
+    <div className="logo-container">
       <img
-        src="https://res.cloudinary.com/dpnobkqmw/image/upload/v1634365426/Frame_275_nyzym3.png"
+        src="https://res.cloudinary.com/sravangunaganti/image/upload/v1653303485/TastyKitchens/Frame_275_bwub4v.png"
         alt="website-footer-logo"
-        className="footer-image "
+        className="logo"
       />
-      <h1 className="tastyKitchen-footer">Tasty Kitchens</h1>
+      <h1 className="footer-heading">Tasty Kitchens</h1>
     </div>
-    <p className="footer-desc">
-      The only thing we are serious about is food. Contact us on
+    <p className="footer-description">
+      The only thing we are serious about is food.
+      <br /> Contact us on
     </p>
-    <div>
+    <div className="social-icons-container">
       <FaPinterestSquare
-        className="footer-icon"
         testid="pintrest-social-icon"
+        className="social-icon"
       />
-      <FaInstagram className="footer-icon" testid="instagram-social-icon" />
-      <FaTwitter className="footer-icon" testid="twitter-social-icon" />
-      <FaFacebookSquare className="footer-icon" testid="facebook-social-icon" />
+      <FaInstagram testid="instagram-social-icon" className="social-icon" />
+      <FaTwitter testid="twitter-social-icon" className="social-icon" />
+      <FaFacebookSquare testid="facebook-social-icon" className="social-icon" />
     </div>
   </div>
 )

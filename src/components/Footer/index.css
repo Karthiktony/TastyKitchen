@@ -1,47 +1,77 @@
 .footer-container {
-  background-color: #0f172a;
+  width: 100%;
+  background: #0f172a;
+  display: flex;
   flex-direction: column;
+  /* justify-content: flex-start; */
+  align-items: center;
+  padding: 20px;
+}
+
+.logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  color: coral;
 }
 
-.main-logo-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.footer-image {
-  margin-top: 25px;
+.logo {
+  width: 53px;
+  height: 43px;
   margin-right: 10px;
-  width: 49px;
-  height: 39px;
+  color: #ffffff;
 }
 
-.tastyKitchen-footer {
-  font-family: 'DM Sans';
+.footer-heading {
+  font-family: DM Sans;
   font-style: italic;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 32px;
   line-height: 48px;
   color: #ffffff;
 }
 
-.footer-desc {
-  font-family: 'DM Sans';
+.footer-description {
+  font-family: DM Sans;
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 24px;
   line-height: 32px;
   text-align: center;
   color: #ffffff;
 }
 
-.footer-icon {
-  color: #ffffff;
-  margin: 20px;
-  height: 40px;
+.social-icons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.social-icon {
   width: 40px;
+  height: 40px;
+  color: #ffffff;
+  margin: 10px;
+}
+
+@media screen and (max-width: 768px), (width: 768px) {
+  .logo {
+    width: 39px;
+    height: 28px;
+  }
+  .footer-heading {
+    font-size: 20px;
+  }
+  .footer-description {
+    font-size: 15px;
+  }
+  .footer-container {
+    justify-content: flex-start;
+  }
+  .social-icon {
+    width: 25px;
+    height: 25px;
+  }
 }
